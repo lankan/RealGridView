@@ -1,0 +1,131 @@
+﻿@model List<EditableWebgrid.Models.UserModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .edit-mode { }
+    .edit-user{}
+    .edit-user display-mode{}
+    .save-user edit-mode{}
+    .display-mode{}
+    .cancel-user{}
+    .webgrid-table
+    {
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        width: 650px;
+        display: table;
+        border-collapse: collapse;
+        border: solid px #C5C5C5;
+        background-color: white;
+    }
+    .webgrid-table td, th
+    {
+        border: 1px solid #C5C5C5;
+        padding: 3px 7px 2px;
+    }
+    .webgrid-header, .webgrid-header a
+    {
+        background-color: #E3E3E3;
+        color: black;
+        text-align: left;
+        text-decoration:none;
+    }
+    .webgrid-footer
+    {
+    }
+    .webgrid-row-style
+    {
+        padding: 3px 7px 2px;
+    }
+    .webgrid-alternating-row
+    {
+        background-color: #F5F5F5;
+        padding: 3px 7px 2px;
+    }
+    .col1Width
+    {
+        width: 50px;
+    }
+    .col2Width
+    {
+        width: 200px;
+    }
+</style>
+
+<script type="text/javascript" >
+    $(function () {
+        $('.edit-mode').hide();
+        $('.edit-user, .cancel-user').on('click', function () {
+            var tr = $(this).parents('tr:first');
+            tr.find('.edit-mode, .display-mode').toggle();
+        });
+
+        $('.save-user').on('click', function () {
+            var tr = $(this).parents('tr:first');
+            var Name = tr.find("#txtName").val();
+            var Records = tr.find("#txtRecords").val();
+            var UserID = tr.find("#UserID").html();
+            var Complete = tr.find("#txtComplete").val();
+
+            tr.find("#lblOperator").text(Name);
+            tr.find("#lblRecords").text(Records);
+            tr.find("#lblComplete").text(Complete);
+
+            tr.find('.edit-mode, .display-mode').toggle();
+            var UserModel =
+            {
+                "Complete": Complete,
+                "Operator": Operator,
+                "Records": Records,
+                "DateComp": DateComp
+
+            };
+            $.ajax({
+                url: '/User/ChangeUser/',
+                data: JSON.stringify(UserModel),
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert(data);
+                }
+            });
+
+        });
+    })
+</script>
+
+<h2>Automation</h2>
+@{
+    var grid = new WebGrid(Model);
+}
+
+<div  id="gridContent" style="padding:20px;" >
+@grid.GetHtml(
+        tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+        mode: WebGridPagerModes.All,
+        columns:
+             grid.Columns(
+             grid.Column("File Name", format: @<text>  <span class="display-mode">@item.FileName </span> <label id="FileName" class="edit-mode">@item.FileName</label> </text>, style: "col1Width"),
+             grid.Column("Date Received", format: @<text>  <span class="display-mode">@item.Date </span> <label id="FileName" class="edit-mode">@item.Date</label> </text>, style: "col1Width"),
+
+             grid.Column("Complete", "Complete", format: @<text>  <span class="display-mode"> <label id="lblComplete">@item.Complete</label> </span> <input type="text" id="txtComplete" value="@item.Complete" class="edit-mode" /></text>, style: "col2Width"),
+             grid.Column("Operator", "Operator", format: @<text>  <span  class="display-mode"> <label id="lblOperator"  >@item.Operator</label> </span> <input type="text" id="txtName" value="@item.Operator" class="edit-mode" /></text>, style: "col2Width"),
+             grid.Column("Records", "Records", format: @<text> <span  class="display-mode"> <label id="lblRecords">@item.Records</label> </span>  <input type="text" id="txtRecords" value="@item.Records" class="edit-mode" /> </text>, style: "col2Width"),
+             grid.Column("DateComp", "Date Completed", format: @<text> <span class="display-mode"> <label id="lblDate">@item.Date</label> </span>  <input type="text" id="Date Received" value="@item.Date" class="edit-mode" /> </text>, style: "col2Width"),
+
+             grid.Column("Action", format: @<text>
+                                <button class="edit-user display-mode" >Edit</button>
+                                <button class="save-user edit-mode"  >Save</button>
+                                <button class="cancel-user edit-mode" >Cancel</button>
+                            </text>,  style: "col3Width" , canSort: false)
+           ))
+</div>
