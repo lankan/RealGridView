@@ -104,28 +104,162 @@
 }
 
 <div  id="gridContent" style="padding:20px;" >
-@grid.GetHtml(
-        tableStyle: "webgrid-table",
-        headerStyle: "webgrid-header",
-        footerStyle: "webgrid-footer",
-        alternatingRowStyle: "webgrid-alternating-row",
-        selectedRowStyle: "webgrid-selected-row",
-        rowStyle: "webgrid-row-style",
-        mode: WebGridPagerModes.All,
-        columns:
-             grid.Columns(
-             grid.Column("File Name", format: @<text>  <span class="display-mode">@item.FileName </span> <label id="FileName" class="edit-mode">@item.FileName</label> </text>, style: "col1Width"),
-             grid.Column("Date Received", format: @<text>  <span class="display-mode">@item.Date </span> <label id="FileName" class="edit-mode">@item.Date</label> </text>, style: "col1Width"),
+    <table class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th scope="col">
+<a href="/?sort=File+Name&amp;sortdir=ASC">File&nbsp;Name</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
+            <th scope="col">
+<a href="/?sort=Date+Received&amp;sortdir=ASC">Date Received</a>            </th>
+            <th scope="col">
+<a href="/?sort=Complete&amp;sortdir=ASC">Complete</a>            </th>
+            <th scope="col">
+<a href="/?sort=Operator&amp;sortdir=ASC">Operator</a>            </th>
+            <th scope="col">
+<a href="/?sort=Records&amp;sortdir=ASC">Records</a>            </th>
+            <th scope="col">
+<a href="/?sort=DateComp&amp;sortdir=ASC">Date Completed</a>            </th>
+            <th scope="col">
+Action            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr class="webgrid-footer">
+            <td colspan="7">1 <a href="/?page=2">2</a> <a href="/?page=3">3</a> <a href="/?page=2">&gt;</a> <a href="/?page=3">&gt;&gt;</a></td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr class="webgrid-row-style">
+            <td class="col1Width">  <span class="display-mode">Roeno.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">Roeno.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">Yes</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="Yes"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Sam</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Sam"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">121</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="121"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-alternating-row">
+            <td class="col1Width">  <span class="display-mode">THaBE.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">THaBE.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">No</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="No"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Dan</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Dan"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">129</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="129"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-row-style">
+            <td class="col1Width">  <span class="display-mode">Roeno.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">Roeno.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">Yes</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="Yes"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Sam</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Sam"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">121</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="121"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-alternating-row">
+            <td class="col1Width">  <span class="display-mode">THaBE.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">THaBE.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">No</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="No"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Dan</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Dan"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">129</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="129"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-row-style">
+            <td class="col1Width">  <span class="display-mode">Roeno.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">Roeno.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">Yes</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="Yes"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Sam</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Sam"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">121</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="121"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-alternating-row">
+            <td class="col1Width">  <span class="display-mode">THaBE.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">THaBE.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">No</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="No"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Dan</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Dan"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">129</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="129"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-row-style">
+            <td class="col1Width">  <span class="display-mode">Roeno.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">Roeno.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">Yes</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="Yes"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Sam</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Sam"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">121</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="121"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-alternating-row">
+            <td class="col1Width">  <span class="display-mode">THaBE.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">THaBE.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">No</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="No"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Dan</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Dan"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">129</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="129"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-row-style">
+            <td class="col1Width">  <span class="display-mode">Roeno.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">Roeno.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">Yes</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="Yes"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Sam</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Sam"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">121</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="121"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+        <tr class="webgrid-alternating-row">
+            <td class="col1Width">  <span class="display-mode">THaBE.pdf </span> <label class="edit-mode" id="FileName" style="display: none;">THaBE.pdf</label> </td>
+            <td class="col1Width">  <span class="display-mode">4/13/2017 12:00:00 AM </span> <label class="edit-mode" id="FileName" style="display: none;">4/13/2017 12:00:00 AM</label> </td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblComplete">No</label> </span> <input class="edit-mode" id="txtComplete" style="display: none;" type="text" value="No"></td>
+            <td class="col2Width">  <span class="display-mode"> <label id="lblOperator">Dan</label> </span> <input class="edit-mode" id="txtName" style="display: none;" type="text" value="Dan"></td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblRecords">129</label> </span>  <input class="edit-mode" id="txtRecords" style="display: none;" type="text" value="129"> </td>
+            <td class="col2Width"> <span class="display-mode"> <label id="lblDate">4/13/2017 12:00:00 AM</label> </span>  <input class="edit-mode" id="Date Received" style="display: none;" type="text" value="4/13/2017 12:00:00 AM"> </td>
+            <td class="col3Width">
+                                <button class="edit-user display-mode">Edit</button>
+                                <button class="save-user edit-mode" style="display: none;">Save</button>
+                                <button class="cancel-user edit-mode" style="display: none;">Cancel</button>
+                            </td>
+        </tr>
+    </tbody>
+    </table>
 
-             grid.Column("Complete", "Complete", format: @<text>  <span class="display-mode"> <label id="lblComplete">@item.Complete</label> </span> <input type="text" id="txtComplete" value="@item.Complete" class="edit-mode" /></text>, style: "col2Width"),
-             grid.Column("Operator", "Operator", format: @<text>  <span  class="display-mode"> <label id="lblOperator"  >@item.Operator</label> </span> <input type="text" id="txtName" value="@item.Operator" class="edit-mode" /></text>, style: "col2Width"),
-             grid.Column("Records", "Records", format: @<text> <span  class="display-mode"> <label id="lblRecords">@item.Records</label> </span>  <input type="text" id="txtRecords" value="@item.Records" class="edit-mode" /> </text>, style: "col2Width"),
-             grid.Column("DateComp", "Date Completed", format: @<text> <span class="display-mode"> <label id="lblDate">@item.Date</label> </span>  <input type="text" id="Date Received" value="@item.Date" class="edit-mode" /> </text>, style: "col2Width"),
-
-             grid.Column("Action", format: @<text>
-                                <button class="edit-user display-mode" >Edit</button>
-                                <button class="save-user edit-mode"  >Save</button>
-                                <button class="cancel-user edit-mode" >Cancel</button>
-                            </text>,  style: "col3Width" , canSort: false)
-           ))
 </div>
